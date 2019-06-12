@@ -44,7 +44,13 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onItemClick(View view, int position) {
                     Intent callIntent = new Intent(MainActivity.this, CallActivity.class);
-                    //TODO pass in argument extras depending on which item was clicked
+                    //TODO pass in argument extras depending on which item was clicked, perhaps add in the id from the person?
+                    Bundle args = new Bundle();
+                    String name = myContacts.get(position).getName();
+                    String number = myContacts.get(position).getNumber();
+                    args.putString("NAME", name);
+                    args.putString("NUMBER", number);
+                    callIntent.putExtras(args);
                     startActivity(callIntent);
                     Toast.makeText(getApplicationContext(), "" + position, Toast.LENGTH_SHORT).show();
                 }
